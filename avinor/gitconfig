@@ -1,68 +1,68 @@
 [alias]
-	st = status
+  st = status
   s  = status -s
-	co = checkout
-	ci = commit
-	bl = branch -a
-	br = branch
-	cp = cherry-pick
+  co = checkout
+  ci = commit
+  bl = branch -a
+  br = branch
+  cp = cherry-pick
 
 [user]
-	name = Jostein Gogstad
-	email = jostein.gogstad@avinor.no
+  name = Jostein Gogstad
+  email = jostein.gogstad@avinor.no
 
 [apply]
   # Detect whitespace errors when applying a patch
   whitespace = fix
 
 [color]
-	diff = auto
-	status = auto
-	branch = auto
+  diff = auto
+  status = auto
+  branch = auto
   grep = auto
 
 [log]
-	ui = auto
-	decorate = full
+  ui = auto
+  decorate = full
 
 [format]
-	pretty = %Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
+  pretty = %Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
 
 [core]
-	# Use cat as default pager (not less)
-	pager = cat
+  # Use cat as default pager (not less)
+  pager = cat
 
-	editor = vim
+  editor = vim
 
-	# Don't convert to CRLF on checkout, but force LF on commit if CRLF is encountered
-	autocrlf = input
+  # Don't convert to CRLF on checkout, but force LF on commit if CRLF is encountered
+  autocrlf = input
 
-	# Global ignore file
-	excludesfile = ~/.gitignore_global
+  # Global ignore file
+  excludesfile = ~/.gitignore_global
 
-	# Treat spaces before tabs and all kinds of trailing whitespace as an error
-	# [default] trailing-space: looks for spaces at the end of a line
-	# [default] space-before-tab: looks for spaces before tabs at the beginning of a line
-	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+  # Treat spaces before tabs and all kinds of trailing whitespace as an error
+  # [default] trailing-space: looks for spaces at the end of a line
+  # [default] space-before-tab: looks for spaces before tabs at the beginning of a line
+  whitespace = space-before-tab,-indent-with-non-tab,trailing-space
 
 [help]
-	# Automatically correct and execute mistyped commands
-	autocorrect = 1
+  # Automatically correct and execute mistyped commands
+  autocorrect = 1
 
 [push]
-	# Make git push push relevant annotated tags when pushing branches out
-	followTags = true
+  # Make git push push relevant annotated tags when pushing branches out
+  followTags = true
 
 [http]
-	# Use corporate proxy
-	proxy = proxy.lv.no:80
-	sslVerify = false
+  # Use corporate proxy
+  proxy = proxy.lv.no:80
+  sslVerify = false
 
 # Corporate proxy doesn't like git://, force https
 [url "https://"]
-	insteadOf = git://
+  insteadOf = git://
 
 [pull]
   # Always rebase on pull, never merge
-	rebase = true
+  rebase = true
 
