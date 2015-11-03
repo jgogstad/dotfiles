@@ -53,6 +53,9 @@
   # Make git push push relevant annotated tags when pushing branches out
   followTags = true
 
+  # Only push the current branch when `git push'
+  default = current
+
 [http]
   # Use corporate proxy
   proxy = proxy.lv.no:80
