@@ -52,20 +52,14 @@
 [push]
   # Make git push push relevant annotated tags when pushing branches out
   followTags = true
-
-  # Only push the current branch when `git push'
-  default = current
-
-[http]
-  # Use corporate proxy
-  proxy = proxy.lv.no:80
-  sslVerify = false
-
-# Corporate proxy doesn't like git://, force https
-[url "https://"]
-  insteadOf = git://
+	default = current
 
 [pull]
   # Always rebase on pull, never merge
   rebase = true
 
+[url "https://github.com/"]
+	insteadOf = git://github.com/
+[http]
+	proxy = proxy.lv.no:80
+	sslVerify = false

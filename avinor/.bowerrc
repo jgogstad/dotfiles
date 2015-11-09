@@ -1,7 +1,8 @@
 {
   "directory": "bower_components",
-  "interactive": false,
-  "proxy": "http://proxy.lv.no:80",
-  "https-proxy": "http://proxy.lv.no:80",
-  "strict-ssl": false
+  "registry": {
+    "search": [
+      "http://mavenrepos.lv.no:5678"
+      ]
+  }
 }
