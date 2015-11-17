@@ -6,7 +6,7 @@
   bl = branch -a
   br = branch
   cp = cherry-pick
-	lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all
+  lg = log --graph --abbrev-commit --decorate --date=relative --format=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --all
 
 [user]
   name = Jostein Gogstad
@@ -27,7 +27,7 @@
   decorate = full
 
 [format]
-	pretty = %Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
+  pretty = %Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
 
 [core]
   # Use cat as default pager (not less)
@@ -36,7 +36,7 @@
   editor = vim
 
   # Don't convert to CRLF on checkout, but force LF on commit if CRLF is encountered
-	autocrlf = input
+  autocrlf = input
 
   # Global ignore file
   excludesfile = ~/.gitignore_global
@@ -44,7 +44,7 @@
   # Treat spaces before tabs and all kinds of trailing whitespace as an error
   # [default] trailing-space: looks for spaces at the end of a line
   # [default] space-before-tab: looks for spaces before tabs at the beginning of a line
-	whitespace = space-before-tab,-indent-with-non-tab,trailing-space
+  whitespace = space-before-tab,-indent-with-non-tab,trailing-space
 
 [help]
   # Automatically correct and execute mistyped commands
@@ -53,14 +53,14 @@
 [push]
   # Make git push push relevant annotated tags when pushing branches out
   followTags = true
-	default = current
+  default = current
 
 [pull]
   # Always rebase on pull, never merge
-	rebase = true
+  rebase = true
 
 [url "https://github.com/"]
-	insteadOf = git://github.com/
+  insteadOf = git://github.com/
 [http]
-	proxy = proxy.lv.no:80
-	sslVerify = false
+  proxy = proxy.lv.no:80
+  sslVerify = false
