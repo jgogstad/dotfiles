@@ -1,4 +1,4 @@
 configuration
 =============
 
-Personal configuration files
+Personal configuration files. Please have a look at https://github.com/mathiasbynens/dotfiles
