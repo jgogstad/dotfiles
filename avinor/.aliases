@@ -1,0 +1,2 @@
+alias brew="ALL_PROXY=proxy.lv.no:80 brew"
+alias curl='http_proxy=proxy.lv.no:80 https_proxy=proxy.lv.no:80 curl --noproxy "localhost,127.0.0.1,0.0.0.0,lv.no" --insecure'
