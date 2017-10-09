@@ -1,0 +1,49 @@
+[user]
+    name = <name>
+    email = <email>
+    editor = vim
+[alias]
+    co = checkout
+    ci = commit
+    cp = cherry-pick
+    st = status -sb
+    cln = remote prune origin
+    br = branch
+    d = diff
+    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --date=short
+    hist-graph = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    type = cat-file -t
+    dump = cat-file -p
+   
+    l = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
+    ll = log --stat --abbrev-commit
+    lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+    git = !exec git # http://caiustheory.com/git-git-git-git-git/
+[color]
+    ui = true
+    diff = auto
+    status = auto
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+[color "status"]
+    added     = cyan bold
+    branch    = cyan bold
+    changed   = magenta bold
+    deleted   = red bold
+    untracked = yellow bold
+[filter "media"]
+    clean = git-media-clean %f
+    smudge = git-media-smudge %f
+[push]
+    default = simple
+[core]
+    editor = vim
+    pager = cat
+	excludesfile = ~/.gitignore_global
+[pull]
+[format]
+    pretty = %Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
+    rebase = true
