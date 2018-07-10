@@ -23,5 +23,5 @@ function first_free_port {
 
 port=$(first_free_port)
 
-echo "Found free $port, opening tunnel..."
+echo "Found open port $port, opening tunnel..."
 kubectl port-forward "$(kubectl get pods | awk '/airflow-webserver/ {print $1}')" "$port:8080"
