@@ -9,10 +9,12 @@ echo "Querying for default GKE cluster"
 PROJECT="$1"
 OLD_IFS="$IFS"
 IFS=$'\n'
+set +e
 clusters=($(gcloud --project "$PROJECT" container clusters list --filter='resourceLabels.tapad-gke-environment=current AND resourceLabels.tapad-gke-cluster=default' | grep RUNNING))
+set -e
 IFS="$OLD_IFS"
 
-[[ ${#clusters[@]} -ne 1 ]] && error "Expected to find 1 cluster, but got ${#clusters[@]}"
+[[ ${#clusters[@]} -ne 1 ]] && error "Expected to find 1 cluster in state RUNNING, but found ${#clusters[@]}"
 
 cluster_name=$(cut -d ' ' -f1 <<<"${clusters[@]}")
 cluster_zone=$(cut -d ' ' -f3 <<<"${clusters[@]}")

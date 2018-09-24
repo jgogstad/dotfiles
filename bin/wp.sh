@@ -24,4 +24,6 @@ function first_free_port {
 port=$(first_free_port)
 
 echo "Found open port $port, opening tunnel..."
-kubectl port-forward "$(kubectl get pods | awk '/airflow-webserver/ {print $1}')" "$port:8080"
+webserver=$(kubectl get pods | awk '/airflow-webserver.*Running/ {print $1}')
+[[ -z "$webserver" ]] && error "No running webserver found"
+kubectl port-forward "$webserver" "$port:8080"

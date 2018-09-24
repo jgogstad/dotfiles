@@ -3,19 +3,25 @@ function error {
   echo "$*" >&2 && exit 1
 }
 
-[[ -z "$1" ]] && error "Usage: $0 <project-name>"
+[[ -z "$1" ]] && error "Usage: $0 <project-name> [environment]"
 
 PROJECT="$1"
-DEFAULT_ENVIRONMENTS=$(gcloud beta composer environments list --filter='labels.tapad-composer-environment=current AND labels.tapad-composer-cluster=default' --project "$PROJECT" --format json)
+AIRFLOW_CLUSTER_NAME="$2"
 
-ENV_COUNT=$(jq '. | length' <<< "$DEFAULT_ENVIRONMENTS")
-
-if [[ "$ENV_COUNT" -ne 1 ]]; then 
-    echo "Expected exactly one environment to match labels, but found $ENV_COUNT. Fallback to naming standard"
-    AIRFLOW_CLUSTER_NAME="${PROJECT/tapad-mart-}"-airflow
+if [[ -z "$AIRFLOW_CLUSTER_NAME" ]]; then
+  DEFAULT_ENVIRONMENTS=$(gcloud beta composer environments list --filter='labels.tapad-composer-environment=current AND labels.tapad-composer-cluster=default' --project "$PROJECT" --format json)
+  
+  ENV_COUNT=$(jq '. | length' <<< "$DEFAULT_ENVIRONMENTS")
+  
+  if [[ "$ENV_COUNT" -ne 1 ]]; then 
+      echo "Expected exactly one environment to match labels, but found $ENV_COUNT. Fallback to naming standard"
+      AIRFLOW_CLUSTER_NAME="${PROJECT/tapad-mart-}"-airflow
+  else
+      echo "Using cluster labelled as default"
+      AIRFLOW_CLUSTER_NAME=$( (jq -cMr '.[0].name' <<< "$DEFAULT_ENVIRONMENTS") | sed -nE 's_^.*environments/([^"/]+)_\1_p')
+  fi
 else
-    echo "Using cluster labelled as default"
-    AIRFLOW_CLUSTER_NAME=$( (jq -cMr '.[0].name' <<< "$DEFAULT_ENVIRONMENTS") | sed -nE 's_^.*environments/([^"/]+)_\1_p')
+  echo "Not looking up default cluster"
 fi
 
 echo "Querying GKE cluster from Airflow cluster $AIRFLOW_CLUSTER_NAME"
