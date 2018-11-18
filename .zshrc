@@ -105,6 +105,9 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
 
+# Z
+. /usr/local/etc/profile.d/z.sh
+
 alias java7='export JAVA_HOME=$JAVA7_HOME'
 alias java8='export JAVA_HOME=$JAVA8_HOME'
 
@@ -117,15 +120,13 @@ export PATH="$HOME/.cargo/bin:$PATH"
 shared_bash=/Users/jostein.gogstad/development/tapad/gcp-integration/gcp-utils/src/main/bash
 export PATH="$HOME/bin:$shared_bash:/usr/local/opt/protobuf@2.5/bin:$PATH"
 
-. ~/opt/z.sh
-
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/jostein.gogstad/opt/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/jostein.gogstad/opt/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '$HOME/opt/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/jostein.gogstad/opt/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/jostein.gogstad/opt/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/jostein.gogstad/opt/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '$HOME/opt/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/jostein.gogstad/opt/google-cloud-sdk/completion.zsh.inc'; fi
 
-source '/Users/jostein.gogstad/.helm_completion'
+source '$HOME/.helm_completion'
 
 export PYENV_ROOT="${HOME}/.pyenv"
 
@@ -151,6 +152,12 @@ alias stripcolors='sed -E "s/[[:cntrl:]]\[[0-9]{1,3}m//g"'
 
 NEXUSUSER=$(grep "^\s*user=" < ~/.ivy2/.credentials | sed 's/.*=//g')
 NEXUSPW=$(grep "^\s*password=" < ~/.ivy2/.credentials | sed 's/.*=//g')
+
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_AUTO_UPDATE=1
+export HOMEBREW_NO_GITHUB_API=1
+export HOMEBREW_NO_INSECURE_REDIRECT=1
+export HOMEBREW_CASK_OPTS=--require-sha
 
 # ZSH
 setopt histignorespace
