@@ -9,6 +9,7 @@ export ZSH=/Users/$DEFAULT_USER/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel9k/powerlevel9k"
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -62,6 +63,7 @@ ZSH_THEME="powerlevel9k/powerlevel9k"
 plugins=(
   git
   zsh-autosuggestions
+  docker
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -95,7 +97,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias vim=nvim
-alias gpg=gpg2
 
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -104,35 +105,65 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export NVM_DIR="$HOME/.nvm"
 . "/usr/local/opt/nvm/nvm.sh"
 
-# Z
-. /usr/local/etc/profile.d/z.sh
+alias java7='export JAVA_HOME=$JAVA7_HOME'
+alias java8='export JAVA_HOME=$JAVA8_HOME'
 
-# Add $HOME/bin
-export PATH="$HOME/bin:$HOME/development/tapad/gcp-integration/gcp-utils/src/main/bash:/usr/local/opt/scala@2.11/bin:$PATH"
-
-# FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.hadoopsetup ] && source ~/.hadoopsetup
+#
+# Cargo
+export PATH="$HOME/.cargo/bin:$PATH"
 
-# Setup pyenv
-export PATH=$(pyenv root)/shims:$PATH
+shared_bash=/Users/jostein.gogstad/development/tapad/gcp-integration/gcp-utils/src/main/bash
+export PATH="$HOME/bin:$shared_bash:/usr/local/opt/protobuf@2.5/bin:$PATH"
 
-# Setup virtualenv home
-export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
+. ~/opt/z.sh
 
-# Tell pyenv-virtualenvwrapper to use pyenv when creating new Python environments
-export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/jostein.gogstad/opt/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/jostein.gogstad/opt/google-cloud-sdk/path.zsh.inc'; fi
 
-# Add GCP to PATH
-export PATH="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin:$PATH"
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/jostein.gogstad/opt/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/jostein.gogstad/opt/google-cloud-sdk/completion.zsh.inc'; fi
 
-# PATH customizations
-export PATH="$HOME/development/personal/dotfiles/bin:$PATH"
+source '/Users/jostein.gogstad/.helm_completion'
+
+export PYENV_ROOT="${HOME}/.pyenv"
+
+# Configure pyenv
+if [ -d "${PYENV_ROOT}" ]; then export PATH="${PYENV_ROOT}/bin:${PATH}" && eval "$(pyenv init -)"; fi
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+export PIP_INDEX_URL=https://$NEXUSUSER:$NEXUSPW@nexus.tapad.com/repository/pypi/simple
+
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Yubikey
-export PATH="$HOME/opt/yubico-piv-tool-1/bin:$PATH"
-export "GPG_TTY=$(tty)"
-export "SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)"
+export GPG_TTY="$(tty)"
+export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+
+# Color config
+export LESS=-r
+alias jq="jq -C"
+alias grep="grep --color=always"
+alias ls="ls -G"
+alias stripcolors='sed -E "s/[[:cntrl:]]\[[0-9]{1,3}m//g"'
+#alias ls='(ls | say &);ls'
+
+
+NEXUSUSER=$(grep "^\s*user=" < ~/.ivy2/.credentials | sed 's/.*=//g')
+NEXUSPW=$(grep "^\s*password=" < ~/.ivy2/.credentials | sed 's/.*=//g')
+
+# ZSH
+setopt histignorespace
 
 # Make Ctrl+U behave like in bash (remove from cursor until beginning of prompt)
 bindkey \^U backward-kill-line
+
+function zshaddhistory() {
+    emulate -L zsh
+    if ! [[ "$1" =~ "(^ykchalresp |^ |password|PASSWORD)" ]] ; then
+        print -sr -- "${1%%$'\n'}"
+        fc -p
+    else
+        return 1
+    fi
+  }
