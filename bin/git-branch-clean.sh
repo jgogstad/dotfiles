@@ -1,6 +1,19 @@
 #!/bin/bash -e
 
+function usage {
+  echo "usage: git bgone"
+  (cat <<EOF
+  -m ~ Only delete local branches that are merged to master
+  -r ~ Delete local branches that does not exist on origin
+  -t DAYS ~ Delete branches with more than DAYS since last commit by user.email
+  -e ~ Don't require user.email on last commit for -t
+  -s ~ Disable sync with all remote branches
+  -d ~ Dry run
+EOF
+) | column -t -s '~'
+}
 ! [[ $(git rev-parse --abbrev-ref HEAD) == master ]] && echo "Please run from master" >&2 && exit 1
+
 
 CURRENT_USER=$(git config user.email)
 OLD_THRESHOLD=14 # days
