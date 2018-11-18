@@ -1,8 +1,8 @@
 [user]
     name = Jostein Gogstad
-    email = jostein.gogstad@tapad.com
+    email = jostein.gogstad@gmail.com
     editor = vim
-    signingkey = 0x27FC9E0CBABCC20A
+	signingKey = 27FC9E0CBABCC20A
 [alias]
     co = checkout
     ci = commit
@@ -50,5 +50,7 @@
     rebase = true
 [pull]
 	rebase = true
+[tag]
+	gpgsign = true
 [commit]
 	gpgsign = true
