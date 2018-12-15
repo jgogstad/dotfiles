@@ -21,7 +21,6 @@ function gcloud_cache_get_or_update {
   local value_file=~/Library/Caches/Powerlevel9k/gcloud_${current_cache_value}_$1.cache
 
   if ! [[ -f $value_file ]]; then
-    echo "LOADING $1" >&2
     mkdir -p $(dirname $value_file)
     gcloud config get-value $1 > $value_file
   fi
