@@ -68,7 +68,7 @@ POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%F{blue}\u256D\u2500%f"
 POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_PREFIX="%F{blue}\u251C\u2500%f"
 POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{blue}\u2570\uf460%f "
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(kubecontext gcp_project gcp_user_joined newline context dir_writable dir root_indicator vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(kube_context gcp_project gcp_user_joined newline context dir_writable dir root_indicator vcs)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs time)
 
 ## Use codepoints from nerdfont-complete (brew tap caskroom/fonts; brew cask install font-meslo-nerd-font)
