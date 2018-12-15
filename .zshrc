@@ -9,7 +9,76 @@ export ZSH=/Users/$DEFAULT_USER/.oh-my-zsh
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="powerlevel9k/powerlevel9k"
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)
+
+function calculate_gcloud_cache_value {
+  local active=$(cat ~/.config/gcloud/active_config)
+  local last_change=$(stat -f%m ~/.config/gcloud/configurations/config_$active)
+  echo -n "${active}_$last_change"
+}
+
+function gcloud_cache_get_or_update {
+  local current_cache_value=$(calculate_gcloud_cache_value)
+  local value_file=~/Library/Caches/Powerlevel9k/gcloud_${current_cache_value}_$1.cache
+
+  if ! [[ -f $value_file ]]; then
+    echo "LOADING $1" >&2
+    mkdir -p $(dirname $value_file)
+    gcloud config get-value $1 > $value_file
+  fi
+
+  echo -n $(<$value_file)
+}
+
+function prompt_gcp_project {
+  local project=$(gcloud_cache_get_or_update project)
+  $1_prompt_segment "$0" "$2" white black "$project" "GCP_PROJECT_ICON"
+}
+
+function prompt_gcp_user {
+  local username=$(gcloud_cache_get_or_update account)
+  local icon
+
+  if [[ $username == *"iam.gserviceaccount.com" ]]; then
+    icon=GCP_SERVICE_ACCOUNT_ICON
+  else
+    icon=GCP_USER_ICON
+  fi
+
+  $1_prompt_segment "$0" "$2" white black "${username%@*}" "$icon"
+}
+
+prompt_kube_context() {
+  local kubectl_version="$(kubectl version --client 2>/dev/null)"
+
+  if [[ -n "$kubectl_version" ]]; then
+    # Get the current Kuberenetes context
+    local cur_ctx=$(kubectl config view -o=jsonpath='{.current-context}')
+    "$1_prompt_segment" "$0" "$2" "magenta" "white" "$cur_ctx" "KUBERNETES_ICON"
+  fi
+}
+
+POWERLEVEL9K_GCP_PROJECT_ICON="%F{red}\ue7b2"
+POWERLEVEL9K_GCP_USER_ICON="%F{027}\uf415"
+POWERLEVEL9K_GCP_SERVICE_ACCOUNT_ICON="%F{red}\uf013"
+
+# Powerlevel9k configuration
+
+## Prompt configuration
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+POWERLEVEL9K_MULTILINE_FIRST_PROMPT_PREFIX="%F{blue}\u256D\u2500%f"
+POWERLEVEL9K_MULTILINE_NEWLINE_PROMPT_PREFIX="%F{blue}\u251C\u2500%f"
+POWERLEVEL9K_MULTILINE_LAST_PROMPT_PREFIX="%F{blue}\u2570\uf460%f "
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(kubecontext gcp_project gcp_user_joined newline context dir_writable dir root_indicator vcs)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs time)
+
+## Use codepoints from nerdfont-complete (brew tap caskroom/fonts; brew cask install font-meslo-nerd-font)
+POWERLEVEL9K_MODE='nerdfont-complete'
+
+## Truncate dir path up to git repository root directory
+# POWERLEVEL9K_SHORTEN_STRATEGY=truncate_with_folder_marker
+# POWERLEVEL9K_SHORTEN_FOLDER_MARKER=.git
+
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
@@ -46,7 +115,7 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs histor
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
 # much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
 # stamp shown in the history command output.
@@ -60,10 +129,13 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs histor
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
+
+# gitfast: Faster git completions
+# sudo: ESC twice: Puts sudo in front of the current command
+
 plugins=(
-  git
-  zsh-autosuggestions
-  docker
+  gitfast
+  sudo
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -81,6 +153,8 @@ source $ZSH/oh-my-zsh.sh
 # else
 #   export EDITOR='mvim'
 # fi
+
+export EDITOR=nvim
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -108,34 +182,34 @@ export NVM_DIR="$HOME/.nvm"
 # Z
 . /usr/local/etc/profile.d/z.sh
 
-alias java7='export JAVA_HOME=$JAVA7_HOME'
-alias java8='export JAVA_HOME=$JAVA8_HOME'
+# Add $HOME/bin
+export PATH="$HOME/bin:$HOME/development/personal/dotfiles/bin:$HOME/development/tapad/gcp-integration/gcp-utils/src/main/bash:/usr/local/opt/scala@2.11/bin:$PATH"
 
+# FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f ~/.hadoopsetup ] && source ~/.hadoopsetup
-#
-# Cargo
-export PATH="$HOME/.cargo/bin:$PATH"
 
-shared_bash=/Users/jostein.gogstad/development/tapad/gcp-integration/gcp-utils/src/main/bash
-export PATH="$HOME/bin:$shared_bash:/usr/local/opt/protobuf@2.5/bin:$PATH"
+# Setup pyenv
+export PATH=$(pyenv root)/shims:$PATH
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '$HOME/opt/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/jostein.gogstad/opt/google-cloud-sdk/path.zsh.inc'; fi
+## Don't let brew know about pyenv
+alias brew='env PATH=${PATH//$(pyenv root)\/shims:/} brew'
 
-# The next line enables shell command completion for gcloud.
-if [ -f '$HOME/opt/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/jostein.gogstad/opt/google-cloud-sdk/completion.zsh.inc'; fi
+# Setup virtualenv home
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
 
-source '$HOME/.helm_completion'
+# Tell pyenv-virtualenvwrapper to use pyenv when creating new Python environments
+export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 
-export PYENV_ROOT="${HOME}/.pyenv"
+# Add GCP to PATH
+export PATH="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/bin:$PATH"
 
-# Configure pyenv
-if [ -d "${PYENV_ROOT}" ]; then export PATH="${PYENV_ROOT}/bin:${PATH}" && eval "$(pyenv init -)"; fi
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
-export PIP_INDEX_URL=https://$NEXUSUSER:$NEXUSPW@nexus.tapad.com/repository/pypi/simple
+# PATH customizations
+export PATH="$HOME/development/personal/dotfiles/bin:$PATH"
 
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+## Homebrew sometimes install stuff to sbin (brew doctor will complain if not in PATH)
+export PATH="/usr/local/sbin:$PATH"
+alias brew='env PATH=${PATH//$(pyenv root)\/shims:/} brew'
 
 # Yubikey
 export GPG_TTY="$(tty)"
@@ -150,9 +224,6 @@ alias stripcolors='sed -E "s/[[:cntrl:]]\[[0-9]{1,3}m//g"'
 #alias ls='(ls | say &);ls'
 
 
-NEXUSUSER=$(grep "^\s*user=" < ~/.ivy2/.credentials | sed 's/.*=//g')
-NEXUSPW=$(grep "^\s*password=" < ~/.ivy2/.credentials | sed 's/.*=//g')
-
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_NO_GITHUB_API=1
@@ -162,15 +233,35 @@ export HOMEBREW_CASK_OPTS=--require-sha
 # ZSH
 setopt histignorespace
 
+## Enable sharing of history across multiple sessions
+#setopt inc_append_history
+setopt share_history
+
 # Make Ctrl+U behave like in bash (remove from cursor until beginning of prompt)
 bindkey \^U backward-kill-line
 
+# Don't add certain patterns to ZSH history file
 function zshaddhistory() {
     emulate -L zsh
     if ! [[ "$1" =~ "(^ykchalresp |^ |password|PASSWORD)" ]] ; then
-        print -sr -- "${1%%$'\n'}"
+        print -Sr -- "${1%%$'\n'}"
         fc -p
     else
         return 1
     fi
   }
+
+# Colorful man pages
+export LESS_TERMCAP_mb=$'\e[01;31m'       # begin blinking
+export LESS_TERMCAP_md=$'\e[01;38;5;74m'  # begin bold
+export LESS_TERMCAP_me=$'\e[0m'           # end mode
+export LESS_TERMCAP_se=$'\e[0m'           # end standout-mode
+export LESS_TERMCAP_so=$'\e[38;5;246m'    # begin standout-mode - info box
+export LESS_TERMCAP_ue=$'\e[0m'           # end underline
+export LESS_TERMCAP_us=$'\e[04;38;5;146m' # begin underline
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/josteingogstad/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/josteingogstad/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/josteingogstad/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/josteingogstad/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
