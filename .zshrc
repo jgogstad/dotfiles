@@ -34,7 +34,15 @@ function prompt_gcp_project {
 }
 
 function prompt_gcp_user {
-  local username=$(gcloud_cache_get_or_update account)
+  if [[ -n "$GOOGLE_APPLICATION_CREDENTIALS" ]]; then
+    local username=$(sed -nE '/email/ s/.*email": "([^"]+)".*/\1/p' < "$GOOGLE_APPLICATION_CREDENTIALS")
+    if [[ -z $username ]]; then
+      username="invalid"
+    fi
+  else
+    local username=$(gcloud_cache_get_or_update account)
+  fi
+
   local icon
 
   if [[ $username == *"iam.gserviceaccount.com" ]]; then
@@ -46,7 +54,7 @@ function prompt_gcp_user {
   $1_prompt_segment "$0" "$2" white black "${username%@*}" "$icon"
 }
 
-prompt_kube_context() {
+function prompt_kube_context {
   local kubectl_version="$(kubectl version --client 2>/dev/null)"
 
   if [[ -n "$kubectl_version" ]]; then
