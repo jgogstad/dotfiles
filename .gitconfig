@@ -44,13 +44,12 @@
     editor = vim
     pager = cat
 	excludesfile = /Users/jostein.gogstad/.gitignore_global
-[pull]
 [format]
     pretty = %Cred%h%Creset %C(yellow)%G?%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
     rebase = true
 [pull]
 	rebase = true
-[tag]
-	gpgsign = true
 [commit]
 	gpgsign = true
+[tag]
+  forceSignAnnotated = true
