@@ -5,7 +5,7 @@ function gcloud_config_value {
   # gcloud cli is too slow, access file directly
   local active=$(<~/.config/gcloud/active_config)
   local config="$HOME/.config/gcloud/configurations/config_$active"
-  sed -nE '/project/ s/.*project = ([^ ]+).*/\1/p' < $config
+  sed -nE "/$1/ s/.*$1 = ([^ ]+).*/\1/p" < $config
 }
 
 function prompt_gcp_project {
@@ -55,7 +55,7 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(kube_context gcp_project gcp_user_joined newl
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status background_jobs time)
 
 ## GCP config
-POWERLEVEL9K_GCP_PROJECT_ICON="%F{red}\ue7b2"
+POWERLEVEL9K_GCP_PROJECT_ICON="%F{202}\ue7b2"
 POWERLEVEL9K_GCP_USER_ICON="%F{027}\uf415"
 POWERLEVEL9K_GCP_SERVICE_ACCOUNT_ICON="%F{red}\uf013"
 
