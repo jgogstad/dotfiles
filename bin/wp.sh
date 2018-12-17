@@ -1,11 +1,10 @@
 #!/bin/bash -e
-
 function error {
   echo "$*" >&2 && exit 1
 }
 
 if [[ -n "$1" ]]; then
-    aic "$1"
+    kubectx "$1"
 fi
 
 function first_free_port {
