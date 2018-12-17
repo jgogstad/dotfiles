@@ -24,7 +24,7 @@ alias brew='env PATH=${PATH//$(pyenv root)\/shims:/} brew'
 
 # Setup virtualenv home
 export WORKON_HOME=$HOME/.virtualenvs
-source /usr/local/bin/virtualenvwrapper.sh
+#source /usr/local/bin/virtualenvwrapper.sh
 
 # Tell pyenv-virtualenvwrapper to use pyenv when creating new Python environments
 export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
@@ -89,8 +89,8 @@ export LESS_TERMCAP_ue=$'\e[0m'           # end underline
 export LESS_TERMCAP_us=$'\e[04;38;5;146m' # begin underline
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/josteingogstad/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/josteingogstad/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f "$HOME/opt/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/opt/google-cloud-sdk/path.zsh.inc"; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/josteingogstad/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/josteingogstad/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f "$HOME/opt/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/opt/google-cloud-sdk/completion.zsh.inc"; fi
 
