@@ -10,9 +10,6 @@ export NVM_DIR="$HOME/.nvm"
 # Z
 . /usr/local/etc/profile.d/z.sh
 
-# Add $HOME/bin
-export PATH="$HOME/bin:$HOME/development/personal/dotfiles/bin:$HOME/development/tapad/gcp-integration/gcp-utils/src/main/bash:/usr/local/opt/scala@2.11/bin:$PATH"
-
 # FZF
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
@@ -71,7 +68,7 @@ bindkey \^U backward-kill-line
 # Don't add certain patterns to ZSH history file
 function zshaddhistory() {
     emulate -L zsh
-    if ! [[ "$1" =~ "(^ykchalresp |^ |password|PASSWORD)" ]] ; then
+    if ! [[ "$1" =~ "(^ykchalresp |^ |password|PASSWORD|VAULT_TOKEN)" ]] ; then
         print -Sr -- "${1%%$'\n'}"
         fc -p
     else
@@ -94,3 +91,5 @@ if [ -f "$HOME/opt/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/opt/google-cl
 # The next line enables shell command completion for gcloud.
 if [ -f "$HOME/opt/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/opt/google-cloud-sdk/completion.zsh.inc"; fi
 
+# Update PATH
+export PATH="$HOME/bin:$HOME/development/personal/dotfiles/bin:$HOME/development/tapad/gcp-integration/gcp-utils/src/main/bash:/usr/local/opt/scala@2.11/bin:$PATH"
