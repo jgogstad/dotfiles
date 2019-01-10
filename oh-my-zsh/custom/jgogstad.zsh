@@ -44,11 +44,9 @@ export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
 export LESS=-r
 alias jq="jq -C"
 alias grep="grep --color=always"
-alias ls="ls -G"
 alias stripcolors='sed -E "s/[[:cntrl:]]\[[0-9]{1,3}m//g"'
-#alias ls='(ls | say &);ls'
 
-
+# Homebrew
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_AUTO_UPDATE=1
 export HOMEBREW_NO_GITHUB_API=1
