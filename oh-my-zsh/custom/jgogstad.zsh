@@ -45,6 +45,7 @@ export LESS=-r
 alias jq="jq -C"
 alias grep="grep --color=always"
 alias stripcolors='sed -E "s/[[:cntrl:]]\[[0-9]{1,3}m//g"'
+unalias ls # OMZ aliases ls to `ls -G`, put exa on path as `ls` instead
 
 # Homebrew
 export HOMEBREW_NO_ANALYTICS=1
