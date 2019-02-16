@@ -1,55 +1,33 @@
 [user]
-    name = Jostein Gogstad
-    email = jostein.gogstad@gmail.com
-    editor = vim
-	signingKey = 27FC9E0CBABCC20A
+ name = Jostein Gogstad
+ email = jostein.gogstad@gmail.com
+ editor = vim
+ signingKey = 27FC9E0CBABCC20A
 [alias]
-    co = checkout
-    ci = commit
-    cp = cherry-pick
-    st = status -sb
-    cln = remote prune origin
-    br = branch
-    d = diff
-    hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --date=short
-    hist-graph = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-    type = cat-file -t
-    dump = cat-file -p
-   
-    l = log --graph --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
-    ll = log --stat --abbrev-commit
-    lg = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) %C(bold yellow)%G?(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
-    git = !exec git
+ git = !exec git
 [color]
-    ui = true
-    diff = auto
-    status = auto
+ ui = true
+ diff = auto
+ status = auto
 [color "diff"]
-    meta = yellow bold
-    frag = magenta bold
-    old = red bold
-    new = green bold
+ meta = yellow bold
+ frag = magenta bold
+ old = red bold
+ new = green bold
 [color "status"]
-    added     = cyan bold
-    branch    = cyan bold
-    changed   = magenta bold
-    deleted   = red bold
-    untracked = yellow bold
-[filter "media"]
-    clean = git-media-clean %f
-    smudge = git-media-smudge %f
+ added = cyan bold
+ branch = cyan bold
+ changed = magenta bold
+ deleted = red bold
+ untracked = yellow bold
 [push]
-    default = simple
-[core]
-    editor = vim
-    pager = cat
-	excludesfile = ~/.gitignore_global
-[format]
-    pretty = %Cred%h%Creset %C(yellow)%G?%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset
-    rebase = true
+ default = simple
+ editor = vim
+ pager = cat
+ excludesfile = ~/.gitignore_global
 [pull]
-	rebase = true
-[commit]
-	gpgsign = true
+ rebase = true
 [tag]
-  forceSignAnnotated = true
+ gpgsign = true
+[commit]
+ gpgsign = false
