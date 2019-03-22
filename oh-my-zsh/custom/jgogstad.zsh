@@ -49,8 +49,6 @@ unalias ls # OMZ aliases ls to `ls -G`, put exa on path as `ls` instead
 
 # Homebrew
 export HOMEBREW_NO_ANALYTICS=1
-export HOMEBREW_NO_AUTO_UPDATE=1
-export HOMEBREW_NO_GITHUB_API=1
 export HOMEBREW_NO_INSECURE_REDIRECT=1
 export HOMEBREW_CASK_OPTS=--require-sha
 
