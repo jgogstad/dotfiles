@@ -1,0 +1,3 @@
+[submodule ".oh-my-zsh/custom/powerlevel9k-gcp"]
+	path = .oh-my-zsh/custom/powerlevel9k-gcp
+	url = https://github.com/jgogstad/powerlevel9k-gcp
