@@ -1,8 +1,5 @@
 # Load Powerlevel9k-gcp
 
-. .oh-my-zsh/custom/powerlevel9k-gcp/powerlevel_gcp.zsh
-. .oh-my-zsh/custom/powerlevel9k-gcp/powerlevel_kubecontext.zsh
-
 ## Prompt configuration
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
 POWERLEVEL9K_PROMPT_ADD_NEWLINE=true

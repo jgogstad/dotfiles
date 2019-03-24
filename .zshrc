@@ -6,11 +6,21 @@ ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SL
 antibody bundle robbyrussell/oh-my-zsh
 antibody bundle robbyrussell/oh-my-zsh path:plugins/gitfast
 antibody bundle robbyrussell/oh-my-zsh path:plugins/gpg-agent
+antibody bundle robbyrussell/oh-my-zsh path:plugins/z
+antibody bundle robbyrussell/oh-my-zsh path:plugins/fzf
+antibody bundle robbyrussell/oh-my-zsh path:plugins/pyenv
+antibody bundle robbyrussell/oh-my-zsh path:plugins/colored-man-pages
 antibody bundle zsh-users/zsh-syntax-highlighting
 antibody bundle zsh-users/zsh-autosuggestions
 
+antibody bundle jgogstad/brew-zsh
 antibody bundle jgogstad/powerlevel9k-gcp
 antibody bundle bhilburn/powerlevel9k
+antibody bundle jgogstad/passwordless-history
+
+for file in ~/.zsh_config/*.zsh; do
+  source $file
+done
 #
 #
 #source ~/.antigen.zsh
