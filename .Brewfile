@@ -1,6 +1,8 @@
 tap "colindean/fonts-nonfree"
 tap "caskroom/fonts"
+tap "getantibody/tap"
 
+brew "antibody"
 brew "catimg"
 brew "ccat"
 brew "curl"
