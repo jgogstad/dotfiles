@@ -8,6 +8,10 @@ bindkey \^U backward-kill-line
 setopt inc_append_history
 setopt share_history
 
+function nowrap {
+  (tput rmam && $@; tput smam)
+}
+
 HISTORY_EXCLUDE_PATTERN="^ykchalresp|$HISTORY_EXCLUDE_PATTERN"
 
 # The next line updates PATH for the Google Cloud SDK.
