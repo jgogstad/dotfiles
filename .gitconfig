@@ -1,12 +1,13 @@
 [user]
   name = Jostein Gogstad
   email = jostein.gogstad@gmail.com
-  editor = vim
   signingKey = 27FC9E0CBABCC20A
 [alias]
   git = !exec git
 [core]
+  editor = nvim
   pager = cat
+  excludesfile = ~/.gitignore_global
 [color]
   ui = true
   diff = auto
@@ -24,9 +25,6 @@
   untracked = yellow bold
 [push]
   default = simple
-  editor = vim
-  pager = cat
-  excludesfile = ~/.gitignore_global
 [pull]
   rebase = true
 [tag]
