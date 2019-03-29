@@ -1,33 +1,35 @@
 [user]
- name = Jostein Gogstad
- email = jostein.gogstad@gmail.com
- editor = vim
- signingKey = 27FC9E0CBABCC20A
+  name = Jostein Gogstad
+  email = jostein.gogstad@gmail.com
+  editor = vim
+  signingKey = 27FC9E0CBABCC20A
 [alias]
- git = !exec git
+  git = !exec git
+[core]
+  pager = cat
 [color]
- ui = true
- diff = auto
- status = auto
+  ui = true
+  diff = auto
+  status = auto
 [color "diff"]
- meta = yellow bold
- frag = magenta bold
- old = red bold
- new = green bold
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
 [color "status"]
- added = cyan bold
- branch = cyan bold
- changed = magenta bold
- deleted = red bold
- untracked = yellow bold
+  added = cyan bold
+  branch = cyan bold
+  changed = magenta bold
+  deleted = red bold
+  untracked = yellow bold
 [push]
- default = simple
- editor = vim
- pager = cat
- excludesfile = ~/.gitignore_global
+  default = simple
+  editor = vim
+  pager = cat
+  excludesfile = ~/.gitignore_global
 [pull]
- rebase = true
+  rebase = true
 [tag]
- gpgsign = true
+  gpgsign = true
 [commit]
- gpgsign = false
+  gpgsign = false
