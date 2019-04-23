@@ -30,4 +30,4 @@
 [tag]
   gpgsign = true
 [commit]
-  gpgsign = false
+  gpgsign = true
