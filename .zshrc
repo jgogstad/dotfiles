@@ -4,6 +4,7 @@ source <(antibody init)
 ZSH="$(antibody home)/https-COLON--SLASH--SLASH-github.com-SLASH-robbyrussell-SLASH-oh-my-zsh"
 
 antibody bundle robbyrussell/oh-my-zsh
+antibody bundle robbyrussell/oh-my-zsh path:plugins/git
 antibody bundle robbyrussell/oh-my-zsh path:plugins/gitfast
 antibody bundle robbyrussell/oh-my-zsh path:plugins/gpg-agent
 antibody bundle robbyrussell/oh-my-zsh path:plugins/z
