@@ -1,5 +1,6 @@
 alias vim=nvim
 alias grep="grep --color=always"
+alias kctx=kubectx
 function lsd { exa --color=never -d $PWD/$1}
 
 # Make Ctrl+U behave like in bash (remove from cursor until beginning of prompt)
