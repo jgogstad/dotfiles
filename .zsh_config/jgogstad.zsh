@@ -10,9 +10,7 @@ bindkey \^U backward-kill-line
 setopt inc_append_history
 setopt share_history
 
-function nowrap {
-  (tput rmam && $@; tput smam)
-}
+export LESS="-Xr"
 
 HISTORY_EXCLUDE_PATTERN="^ykchalresp|$HISTORY_EXCLUDE_PATTERN"
 
