@@ -1,3 +1,4 @@
+#zmodload zsh/zprof
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
@@ -12,7 +13,6 @@ zplug "plugins/gitfast", from:oh-my-zsh
 zplug "plugins/gpg-agent", from:oh-my-zsh
 zplug "plugins/z", from:oh-my-zsh
 zplug "plugins/fzf", from:oh-my-zsh
-zplug "plugins/pyenv", from:oh-my-zsh
 zplug "plugins/colored-man-pages", from:oh-my-zsh
 
 zplug "zsh-users/zsh-syntax-highlighting"
@@ -30,3 +30,4 @@ zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
 zplug "~/.zsh_config", from:local
 
 zplug load
+#zprof

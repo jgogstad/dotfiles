@@ -1,1 +1,1 @@
-.zshrc.zplug
+.zshrc.antibody
