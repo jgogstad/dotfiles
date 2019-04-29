@@ -2,18 +2,8 @@
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
-zplug "lib/completion", from:oh-my-zsh
-zplug "lib/history", from:oh-my-zsh
-zplug "lib/directories", from:oh-my-zsh
-zplug "lib/grep", from:oh-my-zsh
-zplug "lib/termsupport", from:oh-my-zsh
-
-zplug "plugins/git", from:oh-my-zsh
-zplug "plugins/gitfast", from:oh-my-zsh
-zplug "plugins/gpg-agent", from:oh-my-zsh
-zplug "plugins/z", from:oh-my-zsh
-zplug "plugins/fzf", from:oh-my-zsh
-zplug "plugins/colored-man-pages", from:oh-my-zsh
+zplug "robbyrussell/oh-my-zsh", use:"lib/{completion,history,directories,grep,termsupport}"
+zplug "robbyrussell/oh-my-zsh", use:"plugins/{git,gitfast,gpg-agent,z,fzf,colored-man-pages}"
 
 zplug "zsh-users/zsh-syntax-highlighting"
 zplug "zsh-users/zsh-autosuggestions"
