@@ -7,7 +7,7 @@ alias k=kubectl
 function lsd { exa --color=never -d $PWD/$1}
 
 # Make Ctrl+U behave like in bash (remove from cursor until beginning of prompt)
-bindkey \^U backward-kill-line
+#bindkey \^U backward-kill-line
 
 ## Enable sharing of history across multiple sessions
 setopt inc_append_history
