@@ -3,6 +3,7 @@ alias grep="grep --color=always"
 alias kctx=kubectx
 alias kc=kubectx
 alias k=kubectl
+alias top='top -o cpu'
 
 function lsd { exa --color=never -d $PWD/$1}
 
