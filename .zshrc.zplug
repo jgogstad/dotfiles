@@ -12,6 +12,7 @@ zplug "jgogstad/zsh-brew"
 zplug "jgogstad/zsh-exa"
 zplug "jgogstad/zsh-nowrap"
 zplug "jgogstad/zsh-homebin"
+zplug "jgogstad/zsh-rc"
 zplug "jgogstad/powerlevel9k-gcp"
 zplug "jgogstad/passwordless-history"
 

@@ -28,6 +28,6 @@
 [pull]
 	rebase = true
 [tag]
-	gpgsign = false
+	gpgsign = true
 [commit]
 	gpgsign = true
