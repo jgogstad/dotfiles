@@ -18,7 +18,7 @@ zplug "jgogstad/passwordless-history"
 
 zplug "bhilburn/powerlevel9k", use:powerlevel9k.zsh-theme
 
-zplug "~/.zsh_config", from:local
+zplug "$HOME/.zsh_config", from:local
 
 zplug load
 #zprof
