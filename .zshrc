@@ -1,1 +1,1 @@
-/Users/jostein.gogstad/.zshrc.zplug
+.zshrc.antibody

@@ -1,16 +1,27 @@
-robbyrussell/oh-my-zsh
+# antibody bundle < ~/.zsh_plugins.txt > ~/.zsh_plugins.sh
+robbyrussell/oh-my-zsh path:plugins/git
 robbyrussell/oh-my-zsh path:plugins/gitfast
 robbyrussell/oh-my-zsh path:plugins/gpg-agent
 robbyrussell/oh-my-zsh path:plugins/z
 robbyrussell/oh-my-zsh path:plugins/fzf
 robbyrussell/oh-my-zsh path:plugins/colored-man-pages
+robbyrussell/oh-my-zsh path:plugins/colored-man-pages
+
+robbyrussell/oh-my-zsh path:lib/completion.zsh
+robbyrussell/oh-my-zsh path:lib/history.zsh
+robbyrussell/oh-my-zsh path:lib/directories.zsh
+robbyrussell/oh-my-zsh path:lib/grep.zsh
+robbyrussell/oh-my-zsh path:lib/termsupport.zsh
+robbyrussell/oh-my-zsh path:lib/key-bindings.zsh
 
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-autosuggestions
 
-jgogstad/brew-zsh
-jgogstad/exa-zsh
-jgogstad/homebin
+jgogstad/zsh-brew
+jgogstad/zsh-exa
+jgogstad/zsh-nowrap
+jgogstad/zsh-homebin
+jgogstad/zsh-rc
 jgogstad/powerlevel9k-gcp
 jgogstad/passwordless-history
 
