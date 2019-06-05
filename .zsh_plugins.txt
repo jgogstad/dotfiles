@@ -4,6 +4,7 @@ jgogstad/zsh-fastcompinit
 robbyrussell/oh-my-zsh path:lib/completion.zsh
 robbyrussell/oh-my-zsh path:lib/history.zsh
 robbyrussell/oh-my-zsh path:lib/directories.zsh
+robbyrussell/oh-my-zsh path:lib/git.zsh
 robbyrussell/oh-my-zsh path:lib/grep.zsh
 robbyrussell/oh-my-zsh path:lib/termsupport.zsh
 robbyrussell/oh-my-zsh path:lib/key-bindings.zsh
