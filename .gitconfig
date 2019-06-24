@@ -8,6 +8,7 @@
 	editor = nvim
 	pager = cat
 	excludesfile = ~/.gitignore_global
+	autocrlf = input
 [color]
 	ui = true
 	diff = auto
@@ -28,6 +29,6 @@
 [pull]
 	rebase = true
 [tag]
-	gpgsign = true
+	gpgsign = false
 [commit]
-	gpgsign = true
+	gpgsign = false
