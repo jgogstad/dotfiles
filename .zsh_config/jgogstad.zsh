@@ -11,6 +11,9 @@ export LESS="-Xr"
 
 HISTORY_EXCLUDE_PATTERN="^ykchalresp|^kc .*=\.|$HISTORY_EXCLUDE_PATTERN"
 
+export LC_ALL=en_US.UTF-8  
+export LANG=en_US.UTF-8
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/opt/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/opt/google-cloud-sdk/path.zsh.inc"; fi
 
