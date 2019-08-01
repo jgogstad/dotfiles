@@ -1,4 +1,4 @@
-# These git aliases are compatible with the OMZ git plugin, https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/git
+# These git aliases are compatible, and dependent on, the OMZ git plugin, https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/git
 
 alias glol='git log --graph --pretty='\''%Cred%h%Creset %C(yellow)%G?%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'
 alias grhs='git reset --soft'
@@ -19,8 +19,3 @@ function gblo {
 function grbo {
   git rebase -i origin/$(git_current_branch) # Function from OMZ
 }
-
-function gcot {
-  git checkout --track origin/${1##origin/}
-}
-
