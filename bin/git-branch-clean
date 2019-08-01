@@ -28,8 +28,8 @@ OLD_REMOTE_THRESHOLD=30 # days
 git fetch
 git remote prune origin
 log "Deleting merged branches locally and remotely"
-git branch --merged | sed -nE '/master|HEAD/! s/^[[:space:]]*//p' | xargs -I '{}' sh -c 'git br -d "{}" && git branch --remote | grep -E "/{}\$" && git push origin :"{}"'
-git branch -r --merged | sed -nE '/master|HEAD/! s/^[[:space:]]*//p' | xargs -I '{}' sh -c 'git br -d "{}" && git branch --remote | grep -E "/{}\$" && git push origin :"{}"'
+git branch --merged | sed -nE '/master|HEAD/! s/^[[:space:]]*//p' | xargs -I '{}' sh -c 'git branch -d "{}" && git branch --remote | grep -E "/{}\$" && git push origin :"{}"'
+git branch -r --merged | sed -nE '/master|HEAD/! s/^[[:space:]]*//p' | xargs -I '{}' sh -c 'git branch -d "{}" && git branch --remote | grep -E "/{}\$" && git push origin :"{}"'
 
 local_branches=($(git branch -a | sed -E 's/^ *//' | grep -Ev 'master$' | grep -Ev "^remotes"))
 
@@ -51,7 +51,7 @@ for b in "${local_branches[@]}"; do
       continue
     fi
     log "Deleting $b due to inactivity for $days_since days, last commit by $last_commit_by"
-    git br -D "$b" && git branch --remote | grep -E "/$b\$" && git push origin :"$b"
+    git branch -D "$b" && git branch --remote | grep -E "/$b\$" && git push origin :"$b"
   else
     log "Keeping $b, $days_since days since last commit"
   fi
