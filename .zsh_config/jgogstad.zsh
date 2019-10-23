@@ -4,6 +4,7 @@ alias kctx=kubectx
 alias kc=kubectx
 alias k=kubectl
 alias top='top -o cpu'
+alias sbt=/usr/local/bin/sbtx
 
 function lsd { exa --color=never -d $PWD/$1}
 
