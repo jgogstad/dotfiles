@@ -29,6 +29,9 @@
 [pull]
 	rebase = true
 [tag]
-	gpgsign = false
+	gpgsign = true
 [commit]
-	gpgsign = false
+	gpgsign = true
+[filesystem "Oracle Corporation|1.8.0_131|/dev/disk1s1"]
+	timestampResolution = 1001 milliseconds
+	minRacyThreshold = 0 nanoseconds
