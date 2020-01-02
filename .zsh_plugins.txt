@@ -14,8 +14,6 @@ robbyrussell/oh-my-zsh path:plugins/gitfast
 robbyrussell/oh-my-zsh path:plugins/gpg-agent
 robbyrussell/oh-my-zsh path:plugins/z
 robbyrussell/oh-my-zsh path:plugins/fzf
-robbyrussell/oh-my-zsh path:plugins/colored-man-pages
-robbyrussell/oh-my-zsh path:plugins/colored-man-pages
 
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-autosuggestions
