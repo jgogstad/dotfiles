@@ -10,8 +10,9 @@ alias sbt=/usr/local/bin/sbtx
 function lsd { exa --color=never -d $PWD/$1}
 
 # -X: Don't clear terminal after less finish
-# -r: Display raw color codes
-export LESS="-Xr"
+# -R: Display raw color codes
+# -F: Exit if the entire file can be displayed
+export LESS="-XRF"
 
 HISTORY_EXCLUDE_PATTERN="^ykchalresp|^kc .*=\.|$HISTORY_EXCLUDE_PATTERN"
 
