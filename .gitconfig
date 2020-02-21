@@ -1,7 +1,7 @@
 [user]
 	name = Jostein Gogstad
 	email = jostein.gogstad@gmail.com
-	signingKey = 27FC9E0CBABCC20A
+	signingKey = 79026CBF80B244C7
 [alias]
 	git = !exec git
 [core]
