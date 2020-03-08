@@ -26,6 +26,7 @@
 	untracked = yellow bold
 [push]
 	default = simple
+	followTags = true
 [pull]
 	rebase = true
 [tag]
