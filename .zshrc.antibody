@@ -7,3 +7,5 @@ source ~/.zsh_plugins.sh
 for file in ~/.zsh_config/*.zsh; do
   source $file
 done
+
+[ -s "/Users/jostein.gogstad/.jabba/jabba.sh" ] && source "/Users/jostein.gogstad/.jabba/jabba.sh"
