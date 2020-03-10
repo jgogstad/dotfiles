@@ -1,8 +1,25 @@
-# These git aliases are compatible, and dependent on, the OMZ git plugin (for git_current_branch), https://github.com/robbyrussell/oh-my-zsh/tree/master/plugins/git
+# Compatibility with oh-my-zsh git plugin
+if ! [[ ${+commands[git_current_branch]} ]]; then 
+  git_current_branch () {
+  	local ref
+  	ref=$(command git symbolic-ref --quiet HEAD 2> /dev/null)
+  	local ret=$?
+  	if [[ $ret != 0 ]]
+  	then
+  		[[ $ret == 128 ]] && return
+  		ref=$(command git rev-parse --short HEAD 2> /dev/null)  || return
+  	fi
+  	echo ${ref#refs/heads/}
+  }
+fi
 
 alias glol='git log --graph --pretty='\''%Cred%h%Creset %C(yellow)%G?%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'
 alias grhs='git reset --soft'
 alias grhss='git reset --soft HEAD^1'
+
+function grho {
+  git reset --hard origin/$(git_current_branch)
+}
 
 function gs {
   if [[ $# -eq 0 ]]; then
