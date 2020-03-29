@@ -13,12 +13,16 @@ if ! [[ ${+commands[git_current_branch]} ]]; then
   }
 fi
 
+function git_current_remote {
+  git config branch.$(git_current_branch).remote
+}
+
 alias glol='git log --graph --pretty='\''%Cred%h%Creset %C(yellow)%G?%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'\'
 alias grhs='git reset --soft'
 alias grhss='git reset --soft HEAD^1'
 
 function grho {
-  git reset --hard origin/$(git_current_branch)
+  git reset --hard $(git_current_remote)/$(git_current_branch)
 }
 
 function gs {
@@ -44,5 +48,5 @@ function gblo {
 }
 
 function grbo {
-  git rebase -i origin/$(git_current_branch) # Function from OMZ
+  git rebase -i $(git_current_remote)/$(git_current_branch)
 }
