@@ -19,9 +19,12 @@ HISTORY_EXCLUDE_PATTERN="^ykchalresp|^kc .*=\.|$HISTORY_EXCLUDE_PATTERN"
 export LC_ALL=en_US.UTF-8  
 export LANG=en_US.UTF-8
 
-# Share history across concurrently running sessions
-setopt inc_append_history
-setopt share_history
+setopt inc_append_history   # Write to history file immediately, not when shell exits
+setopt share_history        # Share history between all sessions
+setopt hist_no_store        # Don't store history commands
+
+bindkey '^[[1;9D' backward-word # ⌥←
+bindkey '^[[1;9C' forward-word  # ⌥→
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f "$HOME/opt/google-cloud-sdk/path.zsh.inc" ]; then . "$HOME/opt/google-cloud-sdk/path.zsh.inc"; fi
@@ -39,3 +42,4 @@ export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init -)"
 export LDFLAGS="-L/usr/local/opt/libffi/lib"
 export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
+export HOMEBREW_CASK_OPTS="--require-sha --greedy --no-quarantine"
