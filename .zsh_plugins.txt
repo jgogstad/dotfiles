@@ -17,6 +17,7 @@ robbyrussell/oh-my-zsh path:plugins/fzf
 
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-autosuggestions
+hlissner/zsh-autopair
 
 jgogstad/zsh-brew
 jgogstad/zsh-exa
