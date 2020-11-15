@@ -4,6 +4,7 @@
 	signingKey = 79026CBF80B244C7
 [alias]
 	git = !exec git
+	rebase = rebase --committer-date-is-author-date
 [core]
 	editor = nvim
 	pager = cat
