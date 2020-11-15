@@ -43,3 +43,6 @@ eval "$(rbenv init -)"
 export LDFLAGS="-L/usr/local/opt/libffi/lib"
 export PKG_CONFIG_PATH="/usr/local/opt/libffi/lib/pkgconfig"
 export HOMEBREW_CASK_OPTS="--require-sha --greedy --no-quarantine"
+
+# gcloud crashes on python 3.9
+export CLOUDSDK_PYTHON=python2
