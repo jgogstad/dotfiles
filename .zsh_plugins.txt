@@ -6,14 +6,11 @@ robbyrussell/oh-my-zsh path:lib/history.zsh
 robbyrussell/oh-my-zsh path:lib/directories.zsh
 robbyrussell/oh-my-zsh path:lib/git.zsh
 robbyrussell/oh-my-zsh path:lib/grep.zsh
-robbyrussell/oh-my-zsh path:lib/termsupport.zsh
 robbyrussell/oh-my-zsh path:lib/key-bindings.zsh
 
 robbyrussell/oh-my-zsh path:plugins/git
 robbyrussell/oh-my-zsh path:plugins/gitfast
 robbyrussell/oh-my-zsh path:plugins/gpg-agent
-robbyrussell/oh-my-zsh path:plugins/z
-robbyrussell/oh-my-zsh path:plugins/fzf
 
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-autosuggestions
@@ -25,7 +22,8 @@ jgogstad/zsh-nowrap
 jgogstad/zsh-homebin
 jgogstad/zsh-batcat
 jgogstad/zsh-rc
-jgogstad/powerlevel9k-gcp
+#jgogstad/powerlevel9k-gcp
 jgogstad/passwordless-history
 
-bhilburn/powerlevel9k
+#bhilburn/powerlevel9k
+romkatv/powerlevel10k
