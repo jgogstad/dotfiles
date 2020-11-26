@@ -3,7 +3,7 @@
 **In short**
 
 * All dotfiles are managed with [YADM]
-* Secrets are managed with [YADM] and kept out of ZSH history by [passwordless-history](https://github.com/jgogstad/passwordless-history) plugin
+* Secrets are managed with [YADM secrets](https://yadm.io/docs/encryption) and kept out of ZSH history by [passwordless-history](https://github.com/jgogstad/passwordless-history) plugin
 * ZSH configuration is managed by [antibody]
 * ZSH in short is [Powerlevel10k](https://github.com/romkatv/powerlevel10k) for prompt theme, and a minimal import of [oh-my-zsh][oh-my-zsh] along with several [plugins](.zsh_plugins.txt) for shell configuration
 * VIM on desktop is [SpaceVim](https://spacevim.org/), a small and fast `.vimrc` is provided for server setups.
@@ -20,7 +20,7 @@
 [Antibody][antibody] is the fastest plugin manager, [zplug] has most features.
 
 [oh-my-zsh]: https://github.com/robbyrussell/oh-my-zsh
-[YADM]: https://github.com/TheLocehiliosan/yadm
+[YADM]: https://yadm.io/
 [antibody]: https://github.com/getantibody/antibody
 [brew]: https://brew.sh/
 [zplug]: https://github.com/zplug/zplug
