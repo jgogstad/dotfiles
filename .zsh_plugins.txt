@@ -22,8 +22,7 @@ jgogstad/zsh-nowrap
 jgogstad/zsh-homebin
 jgogstad/zsh-batcat
 jgogstad/zsh-rc
-#jgogstad/powerlevel9k-gcp
+jgogstad/powerlevel9k-gcp
 jgogstad/passwordless-history
 
-#bhilburn/powerlevel9k
 romkatv/powerlevel10k
