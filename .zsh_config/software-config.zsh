@@ -25,7 +25,5 @@ if [ -f "$HOME/opt/google-cloud-sdk/completion.zsh.inc" ]; then . "$HOME/opt/goo
 # Load fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# bloop etc
-export PATH="$PATH:$HOME/Library/Application Support/Coursier/bin/"
-
+# Homebrew settings
 export HOMEBREW_CASK_OPTS="--require-sha --greedy --no-quarantine"
